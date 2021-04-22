@@ -35,6 +35,7 @@
                     <th>JENIS KELAMIN</th>
                     <th>AGAMA</th>
                     <th>ALAMAT</th>
+                    <th>AKSI</th>
                 </tr>
             
                 @foreach ($data_siswa as $siswa)
@@ -44,6 +45,7 @@
                         <td>{{ $siswa->jenis_kelamin }}</td>
                         <td>{{ $siswa->agama }}</td>
                         <td>{{ $siswa->alamat }}</td>
+                        <td><a href="{{ route('siswa.edit', $siswa->id) }}" class="btn btn-info btn-sm">Edit</a></td>
                     </tr>
                 @endforeach
             </table>
