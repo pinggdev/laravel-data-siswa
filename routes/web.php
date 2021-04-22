@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/siswa', 'SiswaController@index');
+Route::resource('/siswa', 'SiswaController');
