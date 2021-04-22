@@ -35,7 +35,14 @@
                     <td>{{ $siswa->jenis_kelamin }}</td>
                     <td>{{ $siswa->agama }}</td>
                     <td>{{ $siswa->alamat }}</td>
-                    <td><a href="{{ route('siswa.edit', $siswa->id) }}" class="btn btn-info btn-sm">Edit</a></td>
+                    <form action="{{ route('siswa.destroy', $siswa->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <td>
+                            <a href="{{ route('siswa.edit', $siswa->id) }}" class="btn btn-info btn-sm">Edit</a>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau dihapus ?')">Delete</button>
+                        </td>
+                    </form>
                 </tr>
             @endforeach
         </table>
