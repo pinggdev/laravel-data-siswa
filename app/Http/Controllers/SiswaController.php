@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 
 class SiswaController extends Controller
 {
-    public function index() {
-        $data_siswa = Siswa::all();
+    public function index(Request $request) {
+        if($request->has('cari')) {
+            $data_siswa = Siswa::where('nama_depan', 'LIKE', '%'. $request->cari . '%')->get();
+        } else {
+            $data_siswa = Siswa::all();
+        }
         return view('siswa.index', ['data_siswa' => $data_siswa]);
     }
 
