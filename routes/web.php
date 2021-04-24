@@ -25,4 +25,5 @@ Route::get('/logout', 'AuthController@logout');
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', 'DashboardController@index');
     Route::resource('/siswa', 'SiswaController');
+    Route::get('/siswa{id}/profile', 'SiswaController@profile')->name('siswa.profile');
 });

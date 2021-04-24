@@ -10,7 +10,7 @@
                                 <h3 class="panel-title">Edit Siswa</h3>
                             </div>
                             <div class="panel-body">
-                                <form action="{{ route('siswa.update', $siswa->id) }}" method="POST">
+                                <form action="{{ route('siswa.update', $siswa->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PATCH')
                                     <div class="form-group">
@@ -39,6 +39,11 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1">Alamat</label>
                                         <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ $siswa->alamat }}</textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Avatar</label>
+                                        <input type="file" name="avatar" class="form-control">
                                     </div>
                                     <button type="submit" class="btn btn-warning">Update</button>
                                 </form>
