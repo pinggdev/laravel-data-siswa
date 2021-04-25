@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Siswa;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -17,7 +19,19 @@ class SiswaController extends Controller
     }
 
     public function store(Request $request) {
-        Siswa::create($request->all());
+        
+        // insert ke table users
+        $user = new User;
+        $user->role ='siswa';
+        $user->name = $request->nama_depan;
+        $user->email = $request->email;
+        $user->password = bcrypt('rahasia');
+        $user->remember_token = Str::random(60);
+        $user->save();
+        
+        // insert ke table siswa
+        $request->request->add(['user_id' => $user->id]);
+        $siswa = Siswa::create($request->all());
         return redirect('/siswa')->with('sukses', 'Data berhasil diinput');
     }
 

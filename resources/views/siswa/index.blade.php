@@ -78,6 +78,11 @@
                             </div>
         
                             <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+        
+                            <div class="form-group">
                                 <label for="exampleFormControlSelect1">Pilih Jenis Kelamin</label>
                                 <select class="form-control" id="exampleFormControlSelect1" name="jenis_kelamin">
                                     <option value="L">Laki-Laki</option>

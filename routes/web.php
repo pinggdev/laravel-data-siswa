@@ -22,8 +22,11 @@ Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/postlogin', 'AuthController@postlogin');
 Route::get('/logout', 'AuthController@logout');
 
-Route::group(['middleware' => 'auth'], function() {
-    Route::get('/dashboard', 'DashboardController@index');
+Route::group(['middleware' => ['auth', 'checkRole:admin']], function() {
     Route::resource('/siswa', 'SiswaController');
     Route::get('/siswa{id}/profile', 'SiswaController@profile')->name('siswa.profile');
+});
+
+Route::group(['middleware' => ['auth', 'checkRole:admin,siswa']], function() {
+    Route::get('/dashboard', 'DashboardController@index');
 });
