@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Mapel;
 use App\Siswa;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -72,6 +73,16 @@ class SiswaController extends Controller
 
     public function profile($id) {
         $siswa = Siswa::find($id);
-        return view('siswa.profile', ['siswa' => $siswa]);
+        $matapelajaran = Mapel::all();
+        return view('siswa.profile', ['siswa' => $siswa, 'matapelajaran' => $matapelajaran]);
+    }
+
+    public function addnilai(Request $request, $id) {
+        $siswa = Siswa::find($id);
+        if($siswa->mapel()->where('mapel_id', $request->mapel)->exists()) {
+            return redirect()->route('siswa.profile', $siswa->id)->with('error', 'Data mata pelajaran sudah ada');
+        }
+        $siswa->mapel()->attach($request->mapel, ['nilai' => $request->nilai]);
+        return redirect()->route('siswa.profile', $siswa->id)->with('sukses', 'Data nilai berhasil dimasukkan');
     }
 }

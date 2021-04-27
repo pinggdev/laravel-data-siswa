@@ -24,7 +24,8 @@ Route::get('/logout', 'AuthController@logout');
 
 Route::group(['middleware' => ['auth', 'checkRole:admin']], function() {
     Route::resource('/siswa', 'SiswaController');
-    Route::get('/siswa{id}/profile', 'SiswaController@profile')->name('siswa.profile');
+    Route::get('/siswa/{id}/profile', 'SiswaController@profile')->name('siswa.profile');
+    Route::post('/siswa/{id}/addnilai', 'SiswaController@addnilai')->name('siswa.addnilai');
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:admin,siswa']], function() {
