@@ -23,6 +23,7 @@
                                             <th>JENIS KELAMIN</th>
                                             <th>AGAMA</th>
                                             <th>ALAMAT</th>
+                                            <th>RATA-RATA NILAI</th>
                                             <th>AKSI</th>
                                         </tr>
                                     </thead>
@@ -34,6 +35,7 @@
                                                 <td>{{ $siswa->jenis_kelamin }}</td>
                                                 <td>{{ $siswa->agama }}</td>
                                                 <td>{{ $siswa->alamat }}</td>
+                                                <td>{{ $siswa->rataRataNilai() }}</td>
                                                 <form action="{{ route('siswa.destroy', $siswa->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
