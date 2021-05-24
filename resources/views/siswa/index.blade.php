@@ -9,6 +9,8 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Data Siswa</h3>
                                 <div class="right">
+                                    <a href="/siswa/exportexcel" class="btn btn-sm btn-primary">Export Excel</a>
+                                    <a href="/siswa/exportpdf" class="btn btn-sm btn-primary">Export PDF</a>
                                     <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
                                         <i class="lnr lnr-plus-circle"></i>
                                     </button>
