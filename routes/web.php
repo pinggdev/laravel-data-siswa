@@ -27,9 +27,10 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function() {
     Route::get('/siswa/exportpdf', 'SiswaController@exportPdf');
     Route::get('/siswa/export', 'SiswaController@export');
     Route::resource('/siswa', 'SiswaController');
-    Route::get('/siswa/{id}/profile', 'SiswaController@profile')->name('siswa.profile');
-    Route::post('/siswa/{id}/addnilai', 'SiswaController@addnilai')->name('siswa.addnilai');
-    Route::get('/siswa/{id}/{idmapel}/deletenilai', 'SiswaController@deletenilai');
+    Route::get('/siswa/{siswa}/delete', 'SiswaController@delete');
+    Route::get('/siswa/{siswa}/profile', 'SiswaController@profile')->name('siswa.profile');
+    Route::post('/siswa/{siswa}/addnilai', 'SiswaController@addnilai')->name('siswa.addnilai');
+    Route::get('/siswa/{siswa}/{idmapel}/deletenilai', 'SiswaController@deletenilai');
     Route::get('/guru/{id}/profile', 'GuruController@profile');
 });
 

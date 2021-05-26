@@ -38,14 +38,10 @@
                                                 <td>{{ $siswa->agama }}</td>
                                                 <td>{{ $siswa->alamat }}</td>
                                                 <td>{{ $siswa->rataRataNilai() }}</td>
-                                                <form action="{{ route('siswa.destroy', $siswa->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <td>
-                                                        <a href="{{ route('siswa.edit', $siswa->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau dihapus ?')">Delete</button>
-                                                    </td>
-                                                </form>
+                                                <td>
+                                                    <a href="{{ route('siswa.edit', $siswa->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                    <a href="#" class="btn btn-danger btn-sm delete" siswa-id="{{ $siswa->id }}">Delete</a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -133,4 +129,24 @@
                 </div>
             </div>
         </div>
+@endsection
+
+@section('footer')
+    <script>
+        $('.delete').click(function() {
+            var siswa_id = $(this).attr('siswa-id');
+            swal({
+            title: "Yakin ?",
+            text: "Mau dihapus data siswa dengan id "+siswa_id+" ?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    window.location = "/siswa/"+siswa_id+"/delete";
+                }
+            });
+        });
+    </script>
 @endsection
